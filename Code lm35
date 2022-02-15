@@ -1,0 +1,35 @@
+#include <Servo.h>
+
+float tmp;
+int sen=0;
+Servo srv;
+
+void setup()
+{
+ srv.attach(2);
+ analogReference(INTERNAL);
+ Serial.begin (9600);
+
+}
+
+void loop(){
+  tmp= analogRead(sen);
+  float tmpC = ((tmp*50)/1023.0);
+  Serial.print (tmpC);
+  Serial.println ("C");
+  delay (1000);
+  srv.write(0);
+  
+ if (tmpC<24){
+    srv.write(90);
+    delay(2000);
+    
+   
+   
+ }
+ else if (tmpC>23){
+   srv.write(0);
+      
+  }
+    
+ }
